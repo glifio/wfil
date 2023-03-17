@@ -8,7 +8,13 @@ contract WFILScript is Script {
     function setUp() public {}
 
     function run() public {
-        vm.broadcast();
-        WFIL wFIL = new WFIL();
+        uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
+        address deployerAddr = vm.addr(deployerPrivateKey);
+        address wFILOwner = vm.envAddr("WFIL_OWNER");
+
+        vm.startBroadcast(deployerPrivateKey);
+        WFIL wFIL = new WFIL(wFILOwner);
+
+        vm.stopBroadcast();
     }
 }
