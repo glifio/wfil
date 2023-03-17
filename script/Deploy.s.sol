@@ -10,7 +10,7 @@ contract WFILScript is Script {
     function run() public {
         uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
         address deployerAddr = vm.addr(deployerPrivateKey);
-        address wFILOwner = vm.envAddr("WFIL_OWNER");
+        address wFILOwner = vm.envAddress("WFIL_OWNER");
 
         vm.startBroadcast(deployerPrivateKey);
         WFIL wFIL = new WFIL(wFILOwner);
